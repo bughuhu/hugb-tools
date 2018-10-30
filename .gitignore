@@ -1,0 +1,11 @@
+.idea 
+*.iml  
+target
+catalina.base_IS_UNDEFINED
+*.log
+.settings
+.project
+.apt_generated
+.classpath
+.factorypath
+node_modules
