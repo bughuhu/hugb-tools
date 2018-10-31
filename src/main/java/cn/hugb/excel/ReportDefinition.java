@@ -31,9 +31,9 @@ public class ReportDefinition {
 	private String reportName = "";
 	private String operatorName = "";
 
-	private List<ReportParameter> parametes = new ArrayList();
-	private List<ReportRow> headers = new ArrayList();
-	private List<ReportRow> rows = new ArrayList();
+	private List<ReportParameter> parametes = new ArrayList<ReportParameter>();
+	private List<ReportRow> headers = new ArrayList<ReportRow>();
+	private List<ReportRow> rows = new ArrayList<ReportRow>();
 	private HSSFWorkbook workbook;
 	private HSSFSheet sheet;
 	private boolean prepared = false;
@@ -54,7 +54,7 @@ public class ReportDefinition {
 	public static String CURRENCY_STYLE = "currencyStyle";
 	public static String PERCENTAGE_STYLE = "percentageStyle";
 
-	private HashMap<String, HSSFCellStyle> styles = new HashMap();
+	private HashMap<String, HSSFCellStyle> styles = new HashMap<String, HSSFCellStyle>();
 
 	private boolean printProperty = true;
 	private int headerRowIndex = 0;
@@ -924,7 +924,7 @@ public class ReportDefinition {
 	public static void main(String[] args) {
 		ReportDefinition definition = new ReportDefinition();
 
-		definition.setOperatorName("LIUKAIHUA");
+		definition.setOperatorName("hugb");
 		definition.setReportName("示例表");
 
 		ReportRow headerRow2 = new ReportRow();

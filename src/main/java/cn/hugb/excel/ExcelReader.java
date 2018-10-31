@@ -81,6 +81,8 @@ public class ExcelReader {
 			break;
 		case FORMULA:
 		case BLANK:
+		default:
+			break;
 		}
 
 		return value;
@@ -134,11 +136,11 @@ public class ExcelReader {
 	}
 
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
-		String fileToBeRead = "D:/朝阳分局涉众型经济案件接报案平台-20181025.xlsx";
+		String fileToBeRead = "D:/2.xlsx";
 		ExcelReader excelReader = new ExcelReader();
 		excelReader.loadFile(fileToBeRead);
 		String cell = excelReader.getCellValue(0, 1, 8);
-		System.out.println(cell);
+		System.out.println("---------"+cell);
 		cell = excelReader.getCellValue(0, 2, 8);
 		System.out.println(cell);
 	}

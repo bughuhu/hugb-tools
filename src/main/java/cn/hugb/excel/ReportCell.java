@@ -83,7 +83,7 @@ public class ReportCell {
 		// style.setVerticalAlignment((short) getVAlign());
 		style.setVerticalAlignment(VerticalAlignment.CENTER);
 		if (isHasBorders()) {
-			short borderWidth = (short) getBorderWidth();
+			//short borderWidth = (short) getBorderWidth();
 			// style.setBorderBottom(borderWidth);
 			// style.setBorderTop(borderWidth);
 			// style.setBorderLeft(borderWidth);

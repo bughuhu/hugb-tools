@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ReportRow
 {
-  private List<ReportCell> cells = new ArrayList();
+  private List<ReportCell> cells = new ArrayList<ReportCell>();
   private int rowNumber;
   private String sortKey;
 
