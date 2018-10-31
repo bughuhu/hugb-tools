@@ -398,8 +398,10 @@ public class ReportDefinition {
 		case STRING:
 			value = cell.getStringCellValue();
 			break;
-		case BOOLEAN:
+		case BLANK:
 		case FORMULA:
+		default:
+			break;
 		}
 
 		return value;
@@ -473,20 +475,19 @@ public class ReportDefinition {
 		HSSFRow row = this.sheet.createRow(rownumber);
 		HSSFCell cellPropertyName = row.createCell(0);
 		cellPropertyName.setCellStyle(this.propertyStyle);
-		// cellPropertyName.setCellType(1);
-		cellPropertyName.setCellType(CellType.NUMERIC);
+		cellPropertyName.setCellType(CellType.STRING);
 		cellPropertyName.setCellValue(paramName);
 
 		HSSFCell cellPropertyValue = row.createCell(1);
 		cellPropertyValue.setCellStyle(this.stringCellStyle);
-		// cellPropertyValue.setCellType(1);
-		cellPropertyName.setCellType(CellType.NUMERIC);
+		cellPropertyName.setCellType(CellType.STRING);
 		cellPropertyValue.setCellValue(paraValue);
 
 		if (merge)
 			mergeCells(rownumber, rownumber, 0, 1);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void prepareExcel() {
 		if (!this.prepared) {
 			prepareStyles();
@@ -512,8 +513,7 @@ public class ReportDefinition {
 				for (int i = 0; i < ((ReportRow) this.headers.get(h)).size(); i++) {
 					HSSFCell cellHeader = ((HSSFRow) row).createCell(i);
 					cellHeader.setCellStyle(this.headerStyle);
-					// cellHeader.setCellType(1);
-					cellHeader.setCellType(CellType.NUMERIC);
+					cellHeader.setCellType(CellType.STRING);
 					cellHeader.setCellValue(
 							((ReportCell) ((ReportRow) this.headers.get(h)).getCells().get(i)).getCellContent());
 					this.titleEndColIndex = i;
@@ -531,14 +531,12 @@ public class ReportDefinition {
 					String cellValue = rc.getCellContent();
 					Integer cellFormat = rc.getCellFormat();
 
-					// cell.setCellType(1);
-					cell.setCellType(CellType.NUMERIC);
+					cell.setCellType(CellType.STRING);
 					cell.setCellStyle((HSSFCellStyle) this.styles.get(rc.getCellStyleName()));
 
 					if (cellFormat.intValue() == -1) {
 						cell.setCellFormula(rc.getCellContent());
-						// cell.setCellType(2);
-						cell.setCellType(CellType.STRING);
+						cell.setCellType(CellType.FORMULA);
 					}
 
 					if ((cellFormat.intValue() == 2) && (isDate(cellValue))) {
@@ -546,8 +544,7 @@ public class ReportDefinition {
 							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 							cell.setCellValue(sdf.parse(cellValue));
 						} catch (Exception ex) {
-							// cell.setCellType(1);
-							cell.setCellType(CellType.NUMERIC);
+							cell.setCellType(CellType.STRING);
 							cell.setCellValue(cellValue);
 						}
 					}
@@ -556,22 +553,22 @@ public class ReportDefinition {
 							if (isInteger(cellValue)) {
 								if (cellValue.length() < 11)
 									cell.setCellValue(Integer.parseInt(cellValue));
-								cell.setCellType(0);
+								cell.setCellType(CellType.NUMERIC);
 							} else if (isDecimal(cellValue)) {
 								cell.setCellValue(Double.parseDouble(cellValue));
-								cell.setCellType(0);
+								cell.setCellType(CellType.NUMERIC);
 							}
 						} catch (Exception ex) {
 							cell.setCellValue(cellValue);
-							cell.setCellType(1);
+							cell.setCellType(CellType.STRING);
 						}
 					}
 					if (cellFormat.intValue() == 0) {
 						cell.setCellValue(cellValue);
-						cell.setCellType(1);
+						cell.setCellType(CellType.STRING);
 					}
 					if (cellFormat.intValue() == 3) {
-						cell.setCellType(1);
+						cell.setCellType(CellType.STRING);
 						HSSFCellStyle customStyle = rc.buildStyle(this.workbook);
 						cell.setCellValue(rc.getCellContent());
 						cell.setCellStyle(customStyle);
@@ -801,10 +798,11 @@ public class ReportDefinition {
 				this.dataEndRowIndex);
 	}
 
-	public void setDefaultRepeatTitle() {
-		getWorkbook().setRepeatingRowsAndColumns(0, this.titleStartColIndex, this.titleEndColIndex,
-				this.titleStartRowIndex, this.titleEndRowIndex);
-	}
+	// public void setDefaultRepeatTitle() {
+	// getWorkbook().setRepeatingRowsAndColumns(this.titleStartColIndex,
+	// this.titleEndColIndex,
+	// this.titleStartRowIndex, this.titleEndRowIndex);
+	// }
 
 	public void setPageMargin(double left, double top, double right, double bottom) {
 		getSheet().setMargin((short) 0, left);
@@ -1021,7 +1019,7 @@ public class ReportDefinition {
 
 		definition.prepareExcel();
 		definition.setPageNumberSizeAndFooter(16, "第#PageNumber#页 共#PageCount#页");
-		definition.getWorkbook().setRepeatingRowsAndColumns(0, 0, 18, 6, 7);
+		// definition.getWorkbook().setRepeatingRowsAndColumns(0, 0, 18, 6, 7);
 		definition.buildExcel("D:\\sample.xls");
 	}
 }

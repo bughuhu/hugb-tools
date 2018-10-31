@@ -65,7 +65,7 @@ public class ExcelReader {
 		String value = "";
 
 		switch (cell.getCellType()) {
-		case 0:
+		case NUMERIC:
 			if (HSSFDateUtil.isCellDateFormatted(cell)) {
 				SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 				Date dt = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
@@ -76,11 +76,11 @@ public class ExcelReader {
 				value = subZeroAndDot(f.format(d));
 			}
 			break;
-		case 1:
+		case STRING:
 			value = cell.getStringCellValue();
 			break;
-		case 2:
-		case 3:
+		case FORMULA:
+		case BLANK:
 		}
 
 		return value;
@@ -100,7 +100,7 @@ public class ExcelReader {
 		if (cell == null)
 			return "";
 		switch (cell.getCellType()) {
-		case 0:
+		case NUMERIC:
 			if (HSSFDateUtil.isCellDateFormatted(cell)) {
 				SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 				Date dt = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
@@ -111,13 +111,13 @@ public class ExcelReader {
 				value = subZeroAndDot(f.format(d));
 			}
 			break;
-		case 1:
+		case STRING:
 			value = cell.getStringCellValue();
 			break;
-		case 3:
+		case BLANK:
 			value = "";
 			break;
-		case 2:
+		case FORMULA:
 		default:
 			value = "";
 		}
@@ -134,7 +134,7 @@ public class ExcelReader {
 	}
 
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
-		String fileToBeRead = "D:/test.xlsx";
+		String fileToBeRead = "D:/朝阳分局涉众型经济案件接报案平台-20181025.xlsx";
 		ExcelReader excelReader = new ExcelReader();
 		excelReader.loadFile(fileToBeRead);
 		String cell = excelReader.getCellValue(0, 1, 8);
