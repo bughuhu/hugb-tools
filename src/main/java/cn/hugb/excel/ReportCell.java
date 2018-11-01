@@ -78,23 +78,23 @@ public class ReportCell {
 
 	public HSSFCellStyle buildStyle(HSSFWorkbook wb) {
 		HSSFCellStyle style = wb.createCellStyle();
-		// style.setAlignment((short) getHAlign());
-		style.setAlignment(HorizontalAlignment.CENTER);
-		// style.setVerticalAlignment((short) getVAlign());
-		style.setVerticalAlignment(VerticalAlignment.CENTER);
+		style.setAlignment((short) getHAlign());
+		// style.setAlignment(HorizontalAlignment.CENTER);
+		style.setVerticalAlignment((short) getVAlign());
+		// style.setVerticalAlignment(VerticalAlignment.CENTER);
 		if (isHasBorders()) {
-			//short borderWidth = (short) getBorderWidth();
-			// style.setBorderBottom(borderWidth);
-			// style.setBorderTop(borderWidth);
-			// style.setBorderLeft(borderWidth);
-			// style.setBorderRight(borderWidth);
-			style.setBorderTop(BorderStyle.THIN);
-			style.setBorderRight(BorderStyle.THIN);
-			style.setBorderBottom(BorderStyle.THIN);
-			style.setBorderLeft(BorderStyle.THIN);
+			short borderWidth = (short) getBorderWidth();
+			style.setBorderBottom(borderWidth);
+			style.setBorderTop(borderWidth);
+			style.setBorderLeft(borderWidth);
+			style.setBorderRight(borderWidth);
+			// style.setBorderTop(BorderStyle.THIN);
+			// style.setBorderRight(BorderStyle.THIN);
+			// style.setBorderBottom(BorderStyle.THIN);
+			// style.setBorderLeft(BorderStyle.THIN);
 
-			// style.setBottomBorderColor(new HSSFColor.BLACK().getIndex());
-			style.setBottomBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
+			style.setBottomBorderColor(new HSSFColor.BLACK().getIndex());
+			// style.setBottomBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
 		}
 		HSSFFont font = wb.createFont();
 		font.setFontHeightInPoints((short) getFontSize());

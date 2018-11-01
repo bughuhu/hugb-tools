@@ -65,7 +65,7 @@ public class ExcelReader {
 		String value = "";
 
 		switch (cell.getCellType()) {
-		case NUMERIC:
+		case HSSFCell.CELL_TYPE_NUMERIC:
 			if (HSSFDateUtil.isCellDateFormatted(cell)) {
 				SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 				Date dt = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
@@ -76,11 +76,11 @@ public class ExcelReader {
 				value = subZeroAndDot(f.format(d));
 			}
 			break;
-		case STRING:
+		case HSSFCell.CELL_TYPE_STRING:
 			value = cell.getStringCellValue();
 			break;
-		case FORMULA:
-		case BLANK:
+		case HSSFCell.CELL_TYPE_FORMULA:
+		case HSSFCell.CELL_TYPE_BLANK:
 		default:
 			break;
 		}
@@ -102,7 +102,7 @@ public class ExcelReader {
 		if (cell == null)
 			return "";
 		switch (cell.getCellType()) {
-		case NUMERIC:
+		case HSSFCell.CELL_TYPE_NUMERIC:
 			if (HSSFDateUtil.isCellDateFormatted(cell)) {
 				SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 				Date dt = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
@@ -113,13 +113,13 @@ public class ExcelReader {
 				value = subZeroAndDot(f.format(d));
 			}
 			break;
-		case STRING:
+		case HSSFCell.CELL_TYPE_STRING:
 			value = cell.getStringCellValue();
 			break;
-		case BLANK:
+		case HSSFCell.CELL_TYPE_BLANK:
 			value = "";
 			break;
-		case FORMULA:
+		case HSSFCell.CELL_TYPE_FORMULA:
 		default:
 			value = "";
 		}
@@ -136,11 +136,11 @@ public class ExcelReader {
 	}
 
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
-		String fileToBeRead = "D:/2.xlsx";
+		String fileToBeRead = "D:/1.xlsx";
 		ExcelReader excelReader = new ExcelReader();
 		excelReader.loadFile(fileToBeRead);
 		String cell = excelReader.getCellValue(0, 1, 8);
-		System.out.println("---------"+cell);
+		System.out.println("---------" + cell);
 		cell = excelReader.getCellValue(0, 2, 8);
 		System.out.println(cell);
 	}
