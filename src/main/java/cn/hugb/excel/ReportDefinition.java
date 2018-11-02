@@ -82,8 +82,8 @@ public class ReportDefinition {
 		cellStyle.cloneStyleFrom(cell.getCellStyle());
 		HSSFFont font = this.workbook.createFont();
 		// 设置加粗
-		font.setBold(true);
-		// font.setBoldweight((short) 700);
+		//font.setBold(true);
+		font.setBoldweight((short) 700);
 		cellStyle.setFont(font);
 		return cellStyle;
 	}
@@ -215,8 +215,8 @@ public class ReportDefinition {
 
 		}
 		HSSFFont headerFont = this.workbook.createFont();
-		// headerFont.setBoldweight((short) 700);
-		headerFont.setBold(true);
+		 headerFont.setBoldweight((short) 700);
+		//headerFont.setBold(true);
 		this.headerStyle.setFont(headerFont);
 		// 设置垂直对齐
 		this.headerStyle.setVerticalAlignment((short) 1);

@@ -18,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
+ * 读取excel内容
  * 
  * @author huguobiao
  *
@@ -39,6 +40,13 @@ public class ExcelReader {
 			this.workbookx = new XSSFWorkbook(new FileInputStream(this.filePath));
 	}
 
+	/**
+	 * 加载文件
+	 * 
+	 * @param file
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void loadFile(String file) throws FileNotFoundException, IOException {
 		this.filePath = file;
 
@@ -48,6 +56,14 @@ public class ExcelReader {
 			this.workbookx = new XSSFWorkbook(new FileInputStream(this.filePath));
 	}
 
+	/**
+	 * 获取单元格内容
+	 * 
+	 * @param sheet
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	public String getCellValue(int sheet, int row, int column) {
 		if (this.filePath.endsWith(".xlsx")) {
 			return getCellValueX(sheet, row, column);
@@ -88,6 +104,14 @@ public class ExcelReader {
 		return value;
 	}
 
+	/**
+	 * xlsx高版本获取单元格内容
+	 * 
+	 * @param sheet
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	private String getCellValueX(int sheet, int row, int column) {
 		XSSFSheet childSheet = this.workbookx.getSheetAt(sheet);
 		if (childSheet == null)

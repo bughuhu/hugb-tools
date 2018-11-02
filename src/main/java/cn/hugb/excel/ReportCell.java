@@ -5,9 +5,6 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
 
 public class ReportCell {
 	public static final short ALIGN_GENERAL = 0;
@@ -99,8 +96,8 @@ public class ReportCell {
 		HSSFFont font = wb.createFont();
 		font.setFontHeightInPoints((short) getFontSize());
 		if (this.isBold) {
-			// font.setBoldweight((short) 700);
-			font.setBold(true);
+			font.setBoldweight((short) 700);
+			//font.setBold(true);
 		}
 		style.setFont(font);
 		return style;

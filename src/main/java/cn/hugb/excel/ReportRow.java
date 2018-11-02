@@ -3,6 +3,11 @@ package cn.hugb.excel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author huguobiao
+ *
+ */
 public class ReportRow
 {
   private List<ReportCell> cells = new ArrayList<ReportCell>();
