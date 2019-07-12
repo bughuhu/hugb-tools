@@ -22,7 +22,7 @@ mvn clean package
 
 - PeopleSoft Application Design中新建ExcelWrite类;该类封装了excel输出的jar包调用;
 
-``` java
+``` PeopleCode
 /*==========================================================
   任务编号: 报表输出
   说   明: Excel类
