@@ -22,7 +22,7 @@ mvn clean package
 
 - PeopleSoft Application Design中新建ExcelWrite类;该类封装了excel输出的jar包调用;
 
-``` PeopleCode
+``` javascript
 /*==========================================================
   任务编号: 报表输出
   说   明: Excel类
@@ -211,7 +211,7 @@ end-get;
 
 - 使用样例
 
-```java
+```javascript
 /*==========================================================
   任务编号: XXX
   说    明: XX结果合并报表数据源
@@ -373,7 +373,7 @@ end-method;
 
 - 生成报表，%This.txnRec为Application Engine的AET状态表
 
-```java
+```javascript
    Local array of array of any &dsArray;
    Local array of array of any &paramArray;
    Local array of array of any &headerArray;
