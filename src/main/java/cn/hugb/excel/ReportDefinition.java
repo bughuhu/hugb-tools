@@ -41,6 +41,8 @@ public class ReportDefinition {
 	private HSSFCellStyle dateCellStyle;
 	private HSSFCellStyle currencyStyle;
 	private HSSFCellStyle percentageStyle;
+	private HSSFFont font;
+	private HSSFCellStyle customStyle;
 	public static String HEADER_STYLE = "headerStyle";
 	public static String CELL_STYLE = "cellStyle";
 	public static String STRING_STYLE = "stringStyle";
@@ -72,22 +74,29 @@ public class ReportDefinition {
 	private SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:dd");
 
 	/**
-	 * 加粗的cell样式
+	 * 获取加粗的cell样式
 	 * 
 	 * @param cell
 	 * @return
 	 */
 	public HSSFCellStyle getBoldStyle(HSSFCell cell) {
-		HSSFCellStyle cellStyle = this.workbook.createCellStyle();
-		cellStyle.cloneStyleFrom(cell.getCellStyle());
-		HSSFFont font = this.workbook.createFont();
-		// 设置加粗
-		//font.setBold(true);
-		font.setBoldweight((short) 700);
-		cellStyle.setFont(font);
+		if (this.cellStyle == null && this.font == null) {
+			HSSFCellStyle cellStyle = this.workbook.createCellStyle();
+			cellStyle.cloneStyleFrom(cell.getCellStyle());
+			font = this.workbook.createFont();
+			// 设置加粗
+			font.setBold(true);
+			cellStyle.setFont(font);
+		}
 		return cellStyle;
 	}
 
+	/**
+	 * 设置加粗的cell样式
+	 * 
+	 * @param cell
+	 * @return
+	 */
 	public void setCellBold(int rowIndex, int colIndex) {
 		if (this.sheet.getRow(rowIndex) != null) {
 			HSSFRow row = this.sheet.getRow(rowIndex);
@@ -129,24 +138,16 @@ public class ReportDefinition {
 	 * @return
 	 */
 	public HSSFCellStyle getNoBorderStyle(HSSFCell cell) {
-		HSSFCellStyle cellStyle = this.workbook.createCellStyle();
-		cellStyle.cloneStyleFrom(cell.getCellStyle());
+		if (this.cellStyle == null) {
+			HSSFCellStyle cellStyle = this.workbook.createCellStyle();
+			cellStyle.cloneStyleFrom(cell.getCellStyle());
 
-		// 设置单元格边框样式
-		// CellStyle.BORDER_DOUBLE 双边线
-		// CellStyle.BORDER_THIN 细边线
-		// CellStyle.BORDER_MEDIUM 中等边线
-		// CellStyle.BORDER_DASHED 虚线边线
-		// CellStyle.BORDER_HAIR 小圆点虚线边线
-		// CellStyle.BORDER_THICK 粗边线
-		// cellStyle.setBorderTop(BorderStyle.NONE);
-		// cellStyle.setBorderRight(BorderStyle.NONE);
-		// cellStyle.setBorderBottom(BorderStyle.NONE);
-		// cellStyle.setBorderLeft(BorderStyle.NONE);
-		cellStyle.setBorderLeft((short) 0);
-		cellStyle.setBorderRight((short) 0);
-		cellStyle.setBorderTop((short) 0);
-		cellStyle.setBorderBottom((short) 0);
+			// 设置单元格边框样式
+			cellStyle.setBorderTop(HSSFCellStyle.BORDER_NONE);
+			cellStyle.setBorderRight(HSSFCellStyle.BORDER_NONE);
+			cellStyle.setBorderBottom(HSSFCellStyle.BORDER_NONE);
+			cellStyle.setBorderLeft(HSSFCellStyle.BORDER_NONE);
+		}
 		return cellStyle;
 	}
 
@@ -215,8 +216,8 @@ public class ReportDefinition {
 
 		}
 		HSSFFont headerFont = this.workbook.createFont();
-		 headerFont.setBoldweight((short) 700);
-		//headerFont.setBold(true);
+		headerFont.setBoldweight((short) 700);
+		// headerFont.setBold(true);
 		this.headerStyle.setFont(headerFont);
 		// 设置垂直对齐
 		this.headerStyle.setVerticalAlignment((short) 1);
@@ -586,9 +587,11 @@ public class ReportDefinition {
 					}
 					if (cellFormat.intValue() == 3) {
 						cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-						HSSFCellStyle customStyle = rc.buildStyle(this.workbook);
+						if (this.customStyle == null) {
+							this.customStyle = rc.buildStyle(this.workbook);
+						}
 						cell.setCellValue(rc.getCellContent());
-						cell.setCellStyle(customStyle);
+						cell.setCellStyle(this.customStyle);
 					}
 					if (rc.isBold()) {
 						cell.setCellStyle(getBoldStyle(cell));
@@ -988,7 +991,7 @@ public class ReportDefinition {
 		dataRow1.addPercentNumber("25.0");
 		dataRow1.addNumber("150");
 		definition.addRow(dataRow1);
-		for (int i = 1; i < 100; i++) {
+		for (int i = 1; i < 65520; i++) {
 			ReportRow dataRow2 = new ReportRow();
 			dataRow2.addBoldString("总部");
 			dataRow2.addCell("技术部" + i);

@@ -75,29 +75,23 @@ public class ReportCell {
 
 	public HSSFCellStyle buildStyle(HSSFWorkbook wb) {
 		HSSFCellStyle style = wb.createCellStyle();
-		style.setAlignment((short) getHAlign());
-		// style.setAlignment(HorizontalAlignment.CENTER);
-		style.setVerticalAlignment((short) getVAlign());
-		// style.setVerticalAlignment(VerticalAlignment.CENTER);
+
+		// 居中
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		if (isHasBorders()) {
 			short borderWidth = (short) getBorderWidth();
 			style.setBorderBottom(borderWidth);
 			style.setBorderTop(borderWidth);
 			style.setBorderLeft(borderWidth);
 			style.setBorderRight(borderWidth);
-			// style.setBorderTop(BorderStyle.THIN);
-			// style.setBorderRight(BorderStyle.THIN);
-			// style.setBorderBottom(BorderStyle.THIN);
-			// style.setBorderLeft(BorderStyle.THIN);
-
+			// 底部边框颜色
 			style.setBottomBorderColor(new HSSFColor.BLACK().getIndex());
-			// style.setBottomBorderColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex());
 		}
 		HSSFFont font = wb.createFont();
 		font.setFontHeightInPoints((short) getFontSize());
 		if (this.isBold) {
-			font.setBoldweight((short) 700);
-			//font.setBold(true);
+			font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
 		}
 		style.setFont(font);
 		return style;

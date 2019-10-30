@@ -15,8 +15,9 @@ mvn clean package
 ## 入门
 - 将target目录生成的hugb-tools-x.x.x.jar包部署到%PS_HOME%/class目录下(不建议)或者配置psappsrv.cfg和psprcs.cfg文件中Add to CLASSPATH=指定的目录中;
 
-
 - 重启AppServer和ProcessServer
+
+- 只支持小于65528行数据表输出
 
 ## Excel报表
 
