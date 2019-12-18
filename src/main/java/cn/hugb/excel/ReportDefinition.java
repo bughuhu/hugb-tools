@@ -612,8 +612,10 @@ public class ReportDefinition {
 					this.sheet.autoSizeColumn(i);
 
 					ReportCell rc = (ReportCell) ((ReportRow) this.headers.get(0)).getCells().get(i);
-					if (rc.getColumnWidth() == 0)
-						this.sheet.setColumnWidth(i, (int) (this.sheet.getColumnWidth(i) * 1.3D));
+					if (rc.getColumnWidth() == 0) {
+						//Fixed bug 如果不设置宽度 则不需要设置默认宽度
+//						this.sheet.setColumnWidth(i, (int) (this.sheet.getColumnWidth(i) * 1.3D));
+					}
 					else {
 						this.sheet.setColumnWidth(i, rc.getColumnWidth());
 					}
@@ -624,8 +626,10 @@ public class ReportDefinition {
 					this.sheet.autoSizeColumn(i);
 
 					ReportCell rc = (ReportCell) ((ReportRow) this.rows.get(0)).getCells().get(i);
-					if (rc.getColumnWidth() == 0)
-						this.sheet.setColumnWidth(i, (int) (this.sheet.getColumnWidth(i) * 1.3D));
+					if (rc.getColumnWidth() == 0) {
+						//Fixed bug 如果不设置宽度 则不需要设置默认宽度
+//						this.sheet.setColumnWidth(i, (int) (this.sheet.getColumnWidth(i) * 1.3D));
+					}
 					else {
 						this.sheet.setColumnWidth(i, rc.getColumnWidth());
 					}
