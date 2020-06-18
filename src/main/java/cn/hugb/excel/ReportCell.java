@@ -5,6 +5,9 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 
 public class ReportCell {
 	public static final short ALIGN_GENERAL = 0;
@@ -77,21 +80,29 @@ public class ReportCell {
 		HSSFCellStyle style = wb.createCellStyle();
 
 		// 居中
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+//		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+//		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+		style.setAlignment(HorizontalAlignment.CENTER);
+		style.setVerticalAlignment(VerticalAlignment.CENTER);
 		if (isHasBorders()) {
 			short borderWidth = (short) getBorderWidth();
-			style.setBorderBottom(borderWidth);
-			style.setBorderTop(borderWidth);
-			style.setBorderLeft(borderWidth);
-			style.setBorderRight(borderWidth);
+//			style.setBorderBottom(borderWidth);
+//			style.setBorderTop(borderWidth);
+//			style.setBorderLeft(borderWidth);
+//			style.setBorderRight(borderWidth);
+			style.setBorderBottom(BorderStyle.DOUBLE);
+			style.setBorderTop(BorderStyle.DOUBLE);
+			style.setBorderLeft(BorderStyle.DOUBLE);
+			style.setBorderRight(BorderStyle.DOUBLE);
+			
 			// 底部边框颜色
 			style.setBottomBorderColor(new HSSFColor.BLACK().getIndex());
 		}
 		HSSFFont font = wb.createFont();
 		font.setFontHeightInPoints((short) getFontSize());
 		if (this.isBold) {
-			font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+//			font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+			font.setBold(true);
 		}
 		style.setFont(font);
 		return style;

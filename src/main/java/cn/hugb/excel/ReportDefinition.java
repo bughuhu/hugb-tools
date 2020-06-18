@@ -20,6 +20,9 @@ import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 public class ReportDefinition {
@@ -123,8 +126,8 @@ public class ReportDefinition {
 				HSSFCellStyle cellStyle = this.workbook.createCellStyle();
 				cellStyle.cloneStyleFrom(cell.getCellStyle());
 
-				cellStyle.setBorderBottom(linewidth);
-				// cellStyle.setBorderBottom(BorderStyle.HAIR);
+//				cellStyle.setBorderBottom(linewidth);
+				 cellStyle.setBorderBottom(BorderStyle.HAIR);
 
 				cell.setCellStyle(getBoldStyle(cell));
 			}
@@ -143,10 +146,14 @@ public class ReportDefinition {
 			cellStyle.cloneStyleFrom(cell.getCellStyle());
 
 			// 设置单元格边框样式
-			cellStyle.setBorderTop(HSSFCellStyle.BORDER_NONE);
-			cellStyle.setBorderRight(HSSFCellStyle.BORDER_NONE);
-			cellStyle.setBorderBottom(HSSFCellStyle.BORDER_NONE);
-			cellStyle.setBorderLeft(HSSFCellStyle.BORDER_NONE);
+//			cellStyle.setBorderTop(HSSFCellStyle.BORDER_NONE);
+//			cellStyle.setBorderRight(HSSFCellStyle.BORDER_NONE);
+//			cellStyle.setBorderBottom(HSSFCellStyle.BORDER_NONE);
+//			cellStyle.setBorderLeft(HSSFCellStyle.BORDER_NONE);
+			cellStyle.setBorderTop(BorderStyle.NONE);
+			cellStyle.setBorderRight(BorderStyle.NONE);
+			cellStyle.setBorderBottom(BorderStyle.NONE);
+			cellStyle.setBorderLeft(BorderStyle.NONE);
 		}
 		return cellStyle;
 	}
@@ -167,14 +174,14 @@ public class ReportDefinition {
 		// CellStyle.BORDER_DASHED 虚线边线
 		// CellStyle.BORDER_HAIR 小圆点虚线边线
 		// CellStyle.BORDER_THICK 粗边线
-		// cellStyle.setBorderTop(BorderStyle.THIN);
-		// cellStyle.setBorderRight(BorderStyle.THIN);
-		// cellStyle.setBorderBottom(BorderStyle.THIN);
-		// cellStyle.setBorderLeft(BorderStyle.THIN);
-		cellStyle.setBorderLeft((short) 1);
-		cellStyle.setBorderRight((short) 1);
-		cellStyle.setBorderTop((short) 1);
-		cellStyle.setBorderBottom((short) 1);
+		 cellStyle.setBorderTop(BorderStyle.THIN);
+		 cellStyle.setBorderRight(BorderStyle.THIN);
+		 cellStyle.setBorderBottom(BorderStyle.THIN);
+		 cellStyle.setBorderLeft(BorderStyle.THIN);
+//		cellStyle.setBorderLeft((short) 1);
+//		cellStyle.setBorderRight((short) 1);
+//		cellStyle.setBorderTop((short) 1);
+//		cellStyle.setBorderBottom((short) 1);
 	}
 
 	/**
@@ -205,91 +212,91 @@ public class ReportDefinition {
 	private void prepareStyles() {
 		this.headerStyle = this.workbook.createCellStyle();
 		if (!this.printable) {
-			// this.headerStyle.setBorderTop(BorderStyle.THIN);
-			// this.headerStyle.setBorderRight(BorderStyle.THIN);
-			// this.headerStyle.setBorderBottom(BorderStyle.THIN);
-			// this.headerStyle.setBorderLeft(BorderStyle.THIN);
-			this.headerStyle.setBorderLeft((short) 1);
-			this.headerStyle.setBorderRight((short) 1);
-			this.headerStyle.setBorderTop((short) 1);
-			this.headerStyle.setBorderBottom((short) 1);
+			 this.headerStyle.setBorderTop(BorderStyle.THIN);
+			 this.headerStyle.setBorderRight(BorderStyle.THIN);
+			 this.headerStyle.setBorderBottom(BorderStyle.THIN);
+			 this.headerStyle.setBorderLeft(BorderStyle.THIN);
+//			this.headerStyle.setBorderLeft((short) 1);
+//			this.headerStyle.setBorderRight((short) 1);
+//			this.headerStyle.setBorderTop((short) 1);
+//			this.headerStyle.setBorderBottom((short) 1);
 
 		}
 		HSSFFont headerFont = this.workbook.createFont();
-		headerFont.setBoldweight((short) 700);
-		// headerFont.setBold(true);
+//		headerFont.setBoldweight((short) 700);
+		 headerFont.setBold(true);
 		this.headerStyle.setFont(headerFont);
 		// 设置垂直对齐
-		this.headerStyle.setVerticalAlignment((short) 1);
-		// this.headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		this.headerStyle.setAlignment((short) 2);
-		// this.headerStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.headerStyle.setVerticalAlignment((short) 1);
+		 this.headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+//		this.headerStyle.setAlignment((short) 2);
+		 this.headerStyle.setAlignment(HorizontalAlignment.CENTER);
 		this.headerStyle.setWrapText(true);
 
 		this.cellStyle = this.workbook.createCellStyle();
 		if (!this.printable) {
-			// this.cellStyle.setBorderTop(BorderStyle.THIN);
-			// this.cellStyle.setBorderRight(BorderStyle.THIN);
-			// this.cellStyle.setBorderBottom(BorderStyle.THIN);
-			// this.cellStyle.setBorderLeft(BorderStyle.THIN);
-			this.cellStyle.setBorderLeft((short) 1);
-			this.cellStyle.setBorderRight((short) 1);
-			this.cellStyle.setBorderTop((short) 1);
-			this.cellStyle.setBorderBottom((short) 1);
+			 this.cellStyle.setBorderTop(BorderStyle.THIN);
+			 this.cellStyle.setBorderRight(BorderStyle.THIN);
+			 this.cellStyle.setBorderBottom(BorderStyle.THIN);
+			 this.cellStyle.setBorderLeft(BorderStyle.THIN);
+//			this.cellStyle.setBorderLeft((short) 1);
+//			this.cellStyle.setBorderRight((short) 1);
+//			this.cellStyle.setBorderTop((short) 1);
+//			this.cellStyle.setBorderBottom((short) 1);
 		}
-		this.cellStyle.setVerticalAlignment((short) 1);
-		this.cellStyle.setAlignment((short) 2);
-		// this.cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.cellStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.cellStyle.setVerticalAlignment((short) 1);
+//		this.cellStyle.setAlignment((short) 2);
+		 this.cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.cellStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		this.propertyStyle = this.workbook.createCellStyle();
 		if (!this.printable) {
-			// this.propertyStyle.setBorderTop(BorderStyle.THIN);
-			// this.propertyStyle.setBorderRight(BorderStyle.THIN);
-			// this.propertyStyle.setBorderBottom(BorderStyle.THIN);
-			// this.propertyStyle.setBorderLeft(BorderStyle.THIN);
-			this.propertyStyle.setBorderLeft((short) 1);
-			this.propertyStyle.setBorderRight((short) 1);
-			this.propertyStyle.setBorderTop((short) 1);
-			this.propertyStyle.setBorderBottom((short) 1);
+			 this.propertyStyle.setBorderTop(BorderStyle.THIN);
+			 this.propertyStyle.setBorderRight(BorderStyle.THIN);
+			 this.propertyStyle.setBorderBottom(BorderStyle.THIN);
+			 this.propertyStyle.setBorderLeft(BorderStyle.THIN);
+//			this.propertyStyle.setBorderLeft((short) 1);
+//			this.propertyStyle.setBorderRight((short) 1);
+//			this.propertyStyle.setBorderTop((short) 1);
+//			this.propertyStyle.setBorderBottom((short) 1);
 		}
 		this.propertyStyle.setFont(headerFont);
-		this.propertyStyle.setVerticalAlignment((short) 1);
-		this.propertyStyle.setAlignment((short) 1);
-		// this.propertyStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.propertyStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.propertyStyle.setVerticalAlignment((short) 1);
+//		this.propertyStyle.setAlignment((short) 1);
+		 this.propertyStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.propertyStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		this.stringCellStyle = this.workbook.createCellStyle();
 		if (!this.printable) {
-			this.stringCellStyle.setBorderLeft((short) 1);
-			this.stringCellStyle.setBorderRight((short) 1);
-			this.stringCellStyle.setBorderTop((short) 1);
-			this.stringCellStyle.setBorderBottom((short) 1);
-			// this.stringCellStyle.setBorderTop(BorderStyle.THIN);
-			// this.stringCellStyle.setBorderRight(BorderStyle.THIN);
-			// this.stringCellStyle.setBorderBottom(BorderStyle.THIN);
-			// this.stringCellStyle.setBorderLeft(BorderStyle.THIN);
+//			this.stringCellStyle.setBorderLeft((short) 1);
+//			this.stringCellStyle.setBorderRight((short) 1);
+//			this.stringCellStyle.setBorderTop((short) 1);
+//			this.stringCellStyle.setBorderBottom((short) 1);
+			 this.stringCellStyle.setBorderTop(BorderStyle.THIN);
+			 this.stringCellStyle.setBorderRight(BorderStyle.THIN);
+			 this.stringCellStyle.setBorderBottom(BorderStyle.THIN);
+			 this.stringCellStyle.setBorderLeft(BorderStyle.THIN);
 		}
-		this.stringCellStyle.setVerticalAlignment((short) 1);
-		this.stringCellStyle.setAlignment((short) 1);
-		// this.stringCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.stringCellStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.stringCellStyle.setVerticalAlignment((short) 1);
+//		this.stringCellStyle.setAlignment((short) 1);
+		 this.stringCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.stringCellStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		this.numberCellStyle = this.workbook.createCellStyle();
 		if (!this.printable) {
-			this.numberCellStyle.setBorderLeft((short) 1);
-			this.numberCellStyle.setBorderRight((short) 1);
-			this.numberCellStyle.setBorderTop((short) 1);
-			this.numberCellStyle.setBorderBottom((short) 1);
-			// this.numberCellStyle.setBorderTop(BorderStyle.THIN);
-			// this.numberCellStyle.setBorderRight(BorderStyle.THIN);
-			// this.numberCellStyle.setBorderBottom(BorderStyle.THIN);
-			// this.numberCellStyle.setBorderLeft(BorderStyle.THIN);
+//			this.numberCellStyle.setBorderLeft((short) 1);
+//			this.numberCellStyle.setBorderRight((short) 1);
+//			this.numberCellStyle.setBorderTop((short) 1);
+//			this.numberCellStyle.setBorderBottom((short) 1);
+			 this.numberCellStyle.setBorderTop(BorderStyle.THIN);
+			 this.numberCellStyle.setBorderRight(BorderStyle.THIN);
+			 this.numberCellStyle.setBorderBottom(BorderStyle.THIN);
+			 this.numberCellStyle.setBorderLeft(BorderStyle.THIN);
 		}
-		this.numberCellStyle.setVerticalAlignment((short) 1);
-		this.numberCellStyle.setAlignment((short) 3);
-		// this.numberCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.numberCellStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.numberCellStyle.setVerticalAlignment((short) 1);
+//		this.numberCellStyle.setAlignment((short) 3);
+		 this.numberCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.numberCellStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		/**
 		 * 日期格式
@@ -298,19 +305,19 @@ public class ReportDefinition {
 		this.dateCellStyle = this.workbook.createCellStyle();
 		this.dateCellStyle.setDataFormat(format.getFormat("yyyy-MM-dd"));
 		if (!this.printable) {
-			this.dateCellStyle.setBorderLeft((short) 1);
-			this.dateCellStyle.setBorderRight((short) 1);
-			this.dateCellStyle.setBorderTop((short) 1);
-			this.dateCellStyle.setBorderBottom((short) 1);
-			// this.dateCellStyle.setBorderTop(BorderStyle.THIN);
-			// this.dateCellStyle.setBorderRight(BorderStyle.THIN);
-			// this.dateCellStyle.setBorderBottom(BorderStyle.THIN);
-			// this.dateCellStyle.setBorderLeft(BorderStyle.THIN);
+//			this.dateCellStyle.setBorderLeft((short) 1);
+//			this.dateCellStyle.setBorderRight((short) 1);
+//			this.dateCellStyle.setBorderTop((short) 1);
+//			this.dateCellStyle.setBorderBottom((short) 1);
+			 this.dateCellStyle.setBorderTop(BorderStyle.THIN);
+			 this.dateCellStyle.setBorderRight(BorderStyle.THIN);
+			 this.dateCellStyle.setBorderBottom(BorderStyle.THIN);
+			 this.dateCellStyle.setBorderLeft(BorderStyle.THIN);
 		}
-		this.dateCellStyle.setVerticalAlignment((short) 1);
-		this.dateCellStyle.setAlignment((short) 3);
-		// this.dateCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.dateCellStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.dateCellStyle.setVerticalAlignment((short) 1);
+//		this.dateCellStyle.setAlignment((short) 3);
+		 this.dateCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.dateCellStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		/**
 		 * 货币格式
@@ -319,19 +326,19 @@ public class ReportDefinition {
 		HSSFDataFormat currencyformat = this.workbook.createDataFormat();
 		this.currencyStyle.setDataFormat(currencyformat.getFormat("#,##0.00"));
 		if (!this.printable) {
-			this.currencyStyle.setBorderLeft((short) 1);
-			this.currencyStyle.setBorderRight((short) 1);
-			this.currencyStyle.setBorderTop((short) 1);
-			this.currencyStyle.setBorderBottom((short) 1);
-			// this.currencyStyle.setBorderTop(BorderStyle.THIN);
-			// this.currencyStyle.setBorderRight(BorderStyle.THIN);
-			// this.currencyStyle.setBorderBottom(BorderStyle.THIN);
-			// this.currencyStyle.setBorderLeft(BorderStyle.THIN);
+//			this.currencyStyle.setBorderLeft((short) 1);
+//			this.currencyStyle.setBorderRight((short) 1);
+//			this.currencyStyle.setBorderTop((short) 1);
+//			this.currencyStyle.setBorderBottom((short) 1);
+			 this.currencyStyle.setBorderTop(BorderStyle.THIN);
+			 this.currencyStyle.setBorderRight(BorderStyle.THIN);
+			 this.currencyStyle.setBorderBottom(BorderStyle.THIN);
+			 this.currencyStyle.setBorderLeft(BorderStyle.THIN);
 		}
-		this.currencyStyle.setVerticalAlignment((short) 1);
-		this.currencyStyle.setAlignment((short) 3);
-		// this.currencyStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.currencyStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.currencyStyle.setVerticalAlignment((short) 1);
+//		this.currencyStyle.setAlignment((short) 3);
+		 this.currencyStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.currencyStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		/**
 		 * 百分比格式
@@ -340,19 +347,19 @@ public class ReportDefinition {
 		HSSFDataFormat percentageFormat = this.workbook.createDataFormat();
 		this.percentageStyle.setDataFormat(percentageFormat.getFormat("0.00%"));
 		if (!this.printable) {
-			this.percentageStyle.setBorderLeft((short) 1);
-			this.percentageStyle.setBorderRight((short) 1);
-			this.percentageStyle.setBorderTop((short) 1);
-			this.percentageStyle.setBorderBottom((short) 1);
-			// this.percentageStyle.setBorderTop(BorderStyle.THIN);
-			// this.percentageStyle.setBorderRight(BorderStyle.THIN);
-			// this.percentageStyle.setBorderBottom(BorderStyle.THIN);
-			// this.percentageStyle.setBorderLeft(BorderStyle.THIN);
+//			this.percentageStyle.setBorderLeft((short) 1);
+//			this.percentageStyle.setBorderRight((short) 1);
+//			this.percentageStyle.setBorderTop((short) 1);
+//			this.percentageStyle.setBorderBottom((short) 1);
+			 this.percentageStyle.setBorderTop(BorderStyle.THIN);
+			 this.percentageStyle.setBorderRight(BorderStyle.THIN);
+			 this.percentageStyle.setBorderBottom(BorderStyle.THIN);
+			 this.percentageStyle.setBorderLeft(BorderStyle.THIN);
 		}
-		this.percentageStyle.setVerticalAlignment((short) 1);
-		this.percentageStyle.setAlignment((short) 3);
-		// this.percentageStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		// this.percentageStyle.setAlignment(HorizontalAlignment.CENTER);
+//		this.percentageStyle.setVerticalAlignment((short) 1);
+//		this.percentageStyle.setAlignment((short) 3);
+		 this.percentageStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		 this.percentageStyle.setAlignment(HorizontalAlignment.CENTER);
 
 		this.styles.put(HEADER_STYLE, this.headerStyle);
 		this.styles.put(PROPERTY_STYLE, this.propertyStyle);
