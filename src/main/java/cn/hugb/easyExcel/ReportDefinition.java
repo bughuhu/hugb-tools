@@ -60,7 +60,7 @@ public class ReportDefinition {
 			// 头的策略
 			WriteCellStyle headWriteCellStyle = new WriteCellStyle();
 
-			// 背景设置为红色
+			// 背景设置为25度灰色
 			headWriteCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 			WriteFont headWriteFont = new WriteFont();
 			headWriteFont.setFontHeightInPoints((short) 12);
@@ -77,7 +77,7 @@ public class ReportDefinition {
 			// FillPatternType所以可以不指定
 			contentWriteCellStyle.setFillPatternType(FillPatternType.SOLID_FOREGROUND);
 
-			// 背景绿色
+			// 背景白色绿色
 			contentWriteCellStyle.setFillForegroundColor(IndexedColors.WHITE.getIndex());
 			contentWriteCellStyle.setBorderBottom(BorderStyle.THIN);
 			contentWriteCellStyle.setBorderLeft(BorderStyle.THIN);

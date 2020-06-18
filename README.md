@@ -1,6 +1,8 @@
 # hugb-peoplesoft-tools
 peoplesoft常用工具类汇总
 
+2020-06-18 增加easyExcel
+
 ## Development
 项目依赖[maven](http://maven.apache.org/install.html)环境，请先执行mvn -v命令检查当前mvn环境配置 ; 
 
